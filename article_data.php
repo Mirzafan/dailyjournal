@@ -12,10 +12,14 @@
                     <?php
                     include "koneksi.php";
                     
-                    $hlm = (isset($_POST['hlm'])) ? $_POST['hlm'] : 1;
+                    $hlm = (isset($_POST['hlm']) && $_POST['hlm'] > 0) ? $_POST['hlm'] : 1;
                     $limit = 3;
                     $limit_start = ($hlm - 1) * $limit;
                     $no = $limit_start + 1;
+
+                    if ($limit_start < 0) {
+                        $limit_start = 0;
+                    }
 
                     $sql = "SELECT * FROM article ORDER BY tanggal DESC LIMIT $limit_start, $limit";
                     $hasil = $conn->query($sql);
