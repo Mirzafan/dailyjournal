@@ -1,11 +1,11 @@
 <?php
-include "koneksi.php";
+include "koneksi.php"; //Mengimpor file koneksi.php untuk menghubungkan ke database MySQL.
 
 $hlm = (isset($_POST['hlm']) && is_numeric($_POST['hlm']) && $_POST['hlm'] > 0) ? (int)$_POST['hlm'] : 1;
 $limit = 4;
 $limit_start = ($hlm - 1) * $limit;
 
-// menajga agar limit start tidak negatif
+// Menghindari nilai negatif pada limit_start dan menetapkan nomor urut untuk tabel dimulai dari indeks yang benar.
 if ($limit_start < 0) {
     $limit_start = 0;
 }
